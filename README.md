@@ -31,4 +31,4 @@ I plan to `useState` for every property that needs to be validated and use chang
 
 ## Plan
 
-This document will evolve as I play
+As of now, I'm trying a hook approach. the hook, `useValidate` requires 2 arguments: Schema (Joi Object), Model (object that represent the model to validate). See `./src/forms/CreateUser.tsx` for current approach

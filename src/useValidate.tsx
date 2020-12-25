@@ -11,6 +11,7 @@ function useValidate(validate, model) {
   useEffect(() => {
     setIsValid(validate());
   }, [currentModel]);
+  return { update, isValid };
 }
 
 export default useValidate;
