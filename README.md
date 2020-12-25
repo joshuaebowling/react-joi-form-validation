@@ -1,4 +1,10 @@
+# react-joi-form-validation
+
+Created with CodeSandbox
+
 # React Joi Form Validation
+
+For both of the above reasons, I'd really like a means to apply Joi validations in a React context.
 
 ## Overview
 
