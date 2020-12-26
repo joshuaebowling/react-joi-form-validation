@@ -11,6 +11,7 @@ function useValidate(Schema: Joi.Schema, model) {
     const newCurrentModel = assign({}, currentModel, { [prop]: value });
     setCurrentModel(newCurrentModel);
   };
+
   useEffect(() => {
     console.log(currentModel);
     const { error, value } = Schema.validate(currentModel);
