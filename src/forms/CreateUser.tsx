@@ -4,7 +4,11 @@ import Schema from "../schemas/CreateUser";
 import useValidate from "../useValidate";
 import User from "../models/User";
 const CreateUser = () => {
-  const { isValid, update, errors } = useValidate(Schema, new User());
+  const { isValid, update, currentModel, errors } = useValidate(
+    Schema,
+    new User()
+  );
+  console.log("errors", errors);
   return (
     <form
       onSubmit={(e) => {
@@ -18,7 +22,8 @@ const CreateUser = () => {
         onChange={(e) => update("username", e.target.value)}
       />
       <input type="submit"></input>
-      <div>{JSON.stringify(isValid)}</div>
+      <div>isValid={JSON.stringify(isValid)}</div>
+      {errors && <pre>{errors.toString()}</pre>}
     </form>
   );
 };
