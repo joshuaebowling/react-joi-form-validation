@@ -21,6 +21,21 @@ const CreateUser = () => {
         name="username"
         onChange={(e) => update("username", e.target.value)}
       />
+      <br />
+      <label htmlFor="password">Password</label>
+      <input
+        type="password"
+        name="password"
+        onChange={(e) => update("password", e.target.value)}
+      />
+      <br />
+      <label htmlFor="confirmPassword">Confirm Password</label>
+      <input
+        type="password"
+        name="confirmPassword"
+        onChange={(e) => update("confirmPassword", e.target.value)}
+      />
+      <br />
       <input type="submit"></input>
       <div>isValid={JSON.stringify(isValid)}</div>
       {errors && <pre>{errors.toString()}</pre>}
