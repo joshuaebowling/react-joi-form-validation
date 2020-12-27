@@ -46,5 +46,3 @@ As of now, I'm trying a hook approach. the hook, `useValidate` requires 2 argume
 2. isValid -- `true` if `.validate` returns `undefined`, otherwise `false`
 3. currentModel -- the current state of the model originally passed in using `useValidate`. As mentioned above, using the `update` method any property could be added. Incidentally, after each `update` the model itself is replaced by way of `assign`. See `useValidate.ts` for relevant codes.
 4. errors -- an object with keys for each property and values for each error. As of now, it appears that with my configuration that joi will stop validating after finding the first error. This is OK for now. But, it could obviously be made configurable via and `options` object passed to `useValidate`.
-
-isValid is probably not final property name as it will return the result from the .validate() invocation.
