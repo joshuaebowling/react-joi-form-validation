@@ -3,6 +3,15 @@ import { useState, useEffect } from "react";
 import { assign } from "lodash";
 import Joi from "joi";
 
+const parseErrors = (joiError) => {
+  if (!joiError) return null;
+  let result = {};
+  joiError.details.forEach((x: Joi.ErrorReport) => {
+    result[x.context.key] = x.message;
+  });
+  return result;
+};
+
 function useValidate(Schema: Joi.Schema, model) {
   const [currentModel, setCurrentModel] = useState(model);
   const [isValid, setIsValid] = useState(Schema.validate(model));
@@ -13,13 +22,14 @@ function useValidate(Schema: Joi.Schema, model) {
   };
 
   useEffect(() => {
-    console.log(currentModel);
     const { error, value } = Schema.validate(currentModel);
     //    setErrors(errors);
-    console.log(error);
+    const errs = parseErrors(error);
+    console.log("errs=", errs);
     setIsValid(error === undefined);
     setErrors(error);
   }, [currentModel]);
+
   return { update, isValid, currentModel, errors };
 }
 
