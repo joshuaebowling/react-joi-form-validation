@@ -36,6 +36,13 @@ const CreateUser = () => {
         onChange={(e) => update("confirmPassword", e.target.value)}
       />
       <br />
+      <div
+        onKeyUp={(e) => update("random", e.target.innerText)}
+        style={{ border: "1px solid black" }}
+        contentEditable
+      >
+        editable div
+      </div>
       <input type="submit"></input>
       <div>isValid={JSON.stringify(isValid)}</div>
       {errors && <pre>{errors.toString()}</pre>}
