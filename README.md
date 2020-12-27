@@ -31,7 +31,12 @@ Specifically, it provides a single method, `validate` which will validate the wh
 
 In react-hook-form they have a concept of controlled vs uncontrolled components. Uncontrolled components require extra specification and code. While this is doable, I found the idea confusing at first and possibly unecessary -- this is what I hope to find out.
 
-I plan to `useState` for every property that needs to be validated and use change events to update that state's value. I don't know ultimately what this will look like. To start, I'm going as simple as possible and after I fiddled with it for a while, I imagine some patterns will present themselves -- allowing for some elegance and genericsm. But I will not be sacrificing simplicity, even if it means the code is a bit repetive and not as `dry` as possible. While these things are good, they're not ultimately important.
+~~I plan to `useState` for every property that needs to be validated and use change events to update that state's value. I don't know ultimately what this will look like. To start, I'm going as simple as possible and after I fiddled with it for a while, I imagine some patterns will present themselves -- allowing for some elegance and genericsm. But I will not be sacrificing simplicity, even if it means the code is a bit repetive and not as `dry` as possible. While these things are good, they're not ultimately important.~~
+This was too convoluted because I'd have to place all those individual properties into and object to be validated against the schema. Instead, I've done the following:
+
+1. create `useValidate` hook that takes 2 arguments (for now); namely, `Schema` (the joi object) and `model`, the initial data model.
+2. From the `useValidate` call I'm returning (amongst other things) an `update` which requires two arguments; namely, `property` and `value`
+   While `value` should be obvious, `value` is worth a brief explanation: `property` should correspond to a property on the Joi `Schema` passed into `useValidate`. It doesn't have to be, indeed there are no limitations in this regard. In fact, the property doesn't even have to be on the inital model passed in to `useValidate`. It's my sincere goal to keep this as simple as possible and not bother with customization via the hook, but rather use patterns to implement complexity that can be passed thru/to the hook.
 
 ## Plan
 
