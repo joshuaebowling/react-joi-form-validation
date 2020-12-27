@@ -43,6 +43,15 @@ const CreateUser = () => {
       >
         editable div
       </div>
+      <label htmlFor="signal">Signal</label>
+      <input name="signal" onChange={(e) => update("signal", e.target.value)} />
+      <br />
+      <label htmlFor="telegram">Telegram</label>
+      <input
+        name="telegram"
+        onChange={(e) => update("telegram", e.target.value)}
+      />
+      <br />
       <input type="submit"></input>
       <div>isValid={JSON.stringify(isValid)}</div>
       {errors && <pre>{errors.toString()}</pre>}
