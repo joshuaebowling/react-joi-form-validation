@@ -1,7 +1,21 @@
 /// <reference path="index.d.ts" />
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { assign } from "lodash";
 import Joi from "joi";
+
+const ValidationMessageContainer = ({ errors }) => ({
+  El,
+  errors,
+  property
+}) => {
+  console.log("errors3", errors);
+  if (!errors) return <></>;
+  console.log("errors", errors);
+  console.log("property=", property);
+  const message = errors[property];
+  if (!message) return <></>;
+  return <El message={message} />;
+};
 
 const parseErrors = (joiError) => {
   if (!joiError) return null;
@@ -20,17 +34,26 @@ function useValidate(Schema: Joi.Schema, model) {
     const newCurrentModel = assign({}, currentModel, { [prop]: value });
     setCurrentModel(newCurrentModel);
   };
-
+  const getError = (prop: string | null) => {
+    return !errs ? null : errs[prop === null ? "undefined" : prop];
+  };
   useEffect(() => {
     const { error, value } = Schema.validate(currentModel);
     //    setErrors(errors);
+    console.log("error4", error);
     const errs = parseErrors(error);
-    console.log("errs=", errs);
     setIsValid(error === undefined);
     setErrors(errs);
   }, [currentModel]);
 
-  return { update, isValid, currentModel, errors };
+  return {
+    update,
+    isValid,
+    currentModel,
+    errors,
+    getError,
+    ValidationMessageContainer: ValidationMessageContainer({ errors })
+  };
 }
 
 export default useValidate;
