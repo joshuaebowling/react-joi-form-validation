@@ -6,7 +6,8 @@ import CreateUser from "./schemas/CreateUser";
 export default function App() {
   return (
     <div className="App">
-      <h1>React Joi Form Validation</h1>
+      <h1>React Joi Form Validation (WiP)</h1>
+      <h2>See Readme for explanation</h2>
       <CreateUserForm />
     </div>
   );
