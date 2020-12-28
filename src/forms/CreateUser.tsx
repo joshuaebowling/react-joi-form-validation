@@ -3,12 +3,17 @@ import React from "react";
 import Schema from "../schemas/CreateUser";
 import useValidate from "../useValidate";
 import User from "../models/User";
+import ValidationMessage from "../ValidationMessage";
 const CreateUser = () => {
-  const { isValid, update, currentModel, errors } = useValidate(
-    Schema,
-    new User()
-  );
+  const {
+    isValid,
+    update,
+    currentModel,
+    errors,
+    ValidationMessageContainer
+  } = useValidate(Schema, new User());
   console.log("errors", errors);
+
   return (
     <form
       onSubmit={(e) => {
@@ -20,6 +25,10 @@ const CreateUser = () => {
       <input
         name="username"
         onChange={(e) => update("username", e.target.value)}
+      />
+      <ValidationMessageContainer
+        El={ValidationMessage}
+        property={"username"}
       />
       <br />
       <label htmlFor="password">Password</label>
