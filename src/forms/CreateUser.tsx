@@ -54,7 +54,7 @@ const CreateUser = () => {
       <br />
       <input type="submit"></input>
       <div>isValid={JSON.stringify(isValid)}</div>
-      {errors && <pre>{errors.toString()}</pre>}
+      {errors && <pre>{JSON.stringify(errors, null, 2)}</pre>}
     </form>
   );
 };

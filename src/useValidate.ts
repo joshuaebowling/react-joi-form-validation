@@ -27,7 +27,7 @@ function useValidate(Schema: Joi.Schema, model) {
     const errs = parseErrors(error);
     console.log("errs=", errs);
     setIsValid(error === undefined);
-    setErrors(error);
+    setErrors(errs);
   }, [currentModel]);
 
   return { update, isValid, currentModel, errors };
