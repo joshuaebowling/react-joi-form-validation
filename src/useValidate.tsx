@@ -20,7 +20,7 @@ const parseErrors = (joiError: Joi.ValidationError) => {
 };
 
 function useValidate(
-  Schema: Joi.Schema,
+  schema: Joi.Schema,
   model: object,
   options: Joi.ValidationOptions,
   onSubmit: (model: object) => void | null,
@@ -52,7 +52,7 @@ function useValidate(
     }
   };
   useEffect(() => {
-    const { error } = Schema.validate(currentModel, options);
+    const { error } = schema.validate(currentModel, options);
     setJoiError(error ? error : null);
     const isValid = error === undefined;
     var errs = null;
