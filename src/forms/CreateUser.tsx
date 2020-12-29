@@ -18,7 +18,13 @@ const CreateUser = () => {
     errors,
     ValidationMessageContainer,
     handleSubmit
-  } = useValidate(Schema, new User(), onSubmit, onInvalidSubmit);
+  } = useValidate(
+    Schema,
+    new User(),
+    { abortEarly: true },
+    onSubmit,
+    onInvalidSubmit
+  );
   return (
     <form
       onSubmit={(e) => {
