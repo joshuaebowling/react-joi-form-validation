@@ -3,11 +3,7 @@ import React, { useState, useEffect } from "react";
 import { assign } from "lodash";
 import Joi from "joi";
 
-const ValidationMessageContainer = ({ errors }) => ({
-  El,
-  errors,
-  property
-}) => {
+const ValidationMessageContainer = ({ errors }) => ({ El, property }) => {
   console.log("errors3", errors);
   if (!errors) return <></>;
   console.log("errors", errors);
