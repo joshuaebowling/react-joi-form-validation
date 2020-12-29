@@ -13,30 +13,54 @@ const ValidationMessageContainer = ({ errors }) => ({ El, property }) => {
   return <El message={message} />;
 };
 
-const parseErrors = (joiError) => {
-  if (!joiError) return null;
-  let result = {};
-  joiError.details.forEach((x: Joi.ErrorReport) => {
-    result[x.context.key] = x.message;
+const parseErrors = (joiError: Joi.ValidationError) => {
+  if (!joiError || !joiError.details) return null;
+  let result: any = {};
+  joiError.details?.forEach((x, i) => {
+    result[x.context?.key || i] = x.message;
   });
   return result;
 };
 
-function useValidate(Schema: Joi.Schema, model) {
+function useValidate(
+  Schema: Joi.Schema,
+  model: object,
+  onSubmit: (model: object) => void | null,
+  onInvalidSubmit: (
+    errors: object,
+    joiError: Joi.ValidationError | null,
+    model: object
+  ) => void | null
+) {
   const [currentModel, setCurrentModel] = useState(model);
   const [isValid, setIsValid] = useState(Schema.validate(model));
   const [errors, setErrors] = useState<any | undefined>(undefined);
-  const update = (prop, value) => {
+  const [joiError, setJoiError] = useState<null | Joi.ValidationError>(null);
+  const update = (prop: string, value: any) => {
     const newCurrentModel = assign({}, currentModel, { [prop]: value });
     setCurrentModel(newCurrentModel);
   };
   const getError = (prop: string | null) => {
-    return !errs ? null : errs[prop === null ? "undefined" : prop];
+    return !errors ? null : errors[prop === null ? "undefined" : prop];
+  };
+  const handleSubmit = () => {
+    if (!onSubmit) return console.log("no submit defined");
+    if (isValid) {
+      onSubmit(currentModel);
+      console.log("in isvalid");
+    } else {
+      // onInvalidSubmit
+      //   ? onInvalidSubmit(errors, joiError, currentModel)
+      //   : (() => {})();
+      console.log("in isinvalid");
+    }
   };
   useEffect(() => {
-    const { error, value } = Schema.validate(currentModel);
-    //    setErrors(errors);
-    console.log("error4", error);
+    const { error, value } = Schema.validate(currentModel, {
+      abortEarly: true
+    });
+    console.log("value", value);
+    setJoiError(error);
     const errs = parseErrors(error);
     setIsValid(error === undefined);
     setErrors(errs);
@@ -48,7 +72,8 @@ function useValidate(Schema: Joi.Schema, model) {
     currentModel,
     errors,
     getError,
-    ValidationMessageContainer: ValidationMessageContainer({ errors })
+    ValidationMessageContainer: ValidationMessageContainer({ errors }),
+    handleSubmit
   };
 }
 

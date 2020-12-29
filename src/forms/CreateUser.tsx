@@ -5,21 +5,27 @@ import useValidate from "../useValidate";
 import User from "../models/User";
 import ValidationMessage from "../ValidationMessage";
 const CreateUser = () => {
+  const onSubmit = (model) => {
+    console.log("onsubmit", model);
+  };
+  const onInvalidSubmit = (errs, joierr) => {
+    console.log("uh oh", errs);
+  };
   const {
     isValid,
     update,
     currentModel,
     errors,
-    ValidationMessageContainer
-  } = useValidate(Schema, new User());
-  console.log("errors", errors);
-
+    ValidationMessageContainer,
+    handleSubmit
+  } = useValidate(Schema, new User(), onSubmit, onInvalidSubmit);
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(e);
+        handleSubmit();
       }}
+      noValidate
     >
       <div>
         <label htmlFor="username">Username</label>
@@ -93,6 +99,7 @@ const CreateUser = () => {
       <input type="submit"></input>
       <div>isValid={JSON.stringify(isValid)}</div>
       {errors && <pre>{JSON.stringify(errors, null, 2)}</pre>}
+      <input value={isValid ? "1" : ""} required />
     </form>
   );
 };
