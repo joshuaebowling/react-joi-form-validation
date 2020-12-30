@@ -43,7 +43,9 @@ This was too convoluted because I'd have to place all those individual propertie
 
 ### In
 
-As of now, I'm trying a hook approach. the hook, `useValidate` requires 3 arguments: 1. schema (Joi Object)
+As of now, I'm trying a hook approach. the hook, `useValidate` requires 4 arguments:
+
+1. schema (Joi Object)
 
 2. model (object that represent the model to validate).
 3. options: See joi validate options arguments [here](https://joi.dev/api/?v=17.3.0#anyvalidatevalue-options)
