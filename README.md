@@ -52,9 +52,10 @@ As of now, I'm trying a hook approach. the hook, `useValidate` requires 3 argume
 - onSubmit should expect argument `model` which will be the `currentValue` from the hook. It should reflect all properties of the origally-set object when the hook was created + any that may have been added (for better or worse) -- in other words, the aggregate of the original and updates. See `useValidate.tsx.update` for code.
 
 5. onInvalidSubmit: this function will be wrapped in the `handleSubmit` and will execute when status `isValid` = false. Should expect the arguments
-1. `errors`: an object of { [propertyName]: [message] } structure.
-1. `joiError`: the original joi error object
-1. `model`: the latest `currentModel` from hook state.
+
+- `errors`: an object of { [propertyName]: [message] } structure.
+- `joiError`: the original joi error object
+- `model`: the latest `currentModel` from hook state.
 
 See `./src/forms/CreateUser.tsx` for current approach. `useValidate` will return and object with the following properties.
 
