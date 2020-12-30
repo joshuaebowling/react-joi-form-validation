@@ -40,9 +40,9 @@ const CreateUser = () => {
       <div>
         <label htmlFor="username">Username</label>
         <input
-          className={errors["username"] ? "invalid" : ""}
+          className={errors && errors["username"] ? "invalid" : ""}
           name="username"
-          aria-invalid={errors["usename"]}
+          aria-invalid={errors && errors["username"]}
           onChange={(e) =>
             timeoutInterrupt(() => update("username", e.target.value), 500)
           }
