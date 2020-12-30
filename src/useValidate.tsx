@@ -53,10 +53,11 @@ function useValidate(
   };
   useEffect(() => {
     const { error } = schema.validate(currentModel, options);
+
     setJoiError(error ? error : null);
     const isValid = error === undefined;
     var errs = null;
-    if (isValid && error) errs = parseErrors(error);
+    if (!isValid && error) errs = parseErrors(error);
     setIsValid(isValid);
     setErrors(errs);
   }, [currentModel]);
