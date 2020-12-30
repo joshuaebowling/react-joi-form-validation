@@ -4,6 +4,8 @@ import Schema from "../schemas/CreateUser";
 import useValidate from "../useValidate";
 import User from "../models/User";
 import ValidationMessage from "../ValidationMessage";
+import useTimeoutInterrupt from "../useTimeoutInterrupt";
+
 const CreateUser = () => {
   const onSubmit = (model) => {
     console.log("onsubmit", model);
@@ -11,6 +13,7 @@ const CreateUser = () => {
   const onInvalidSubmit = (errs, joierr) => {
     console.log("uh oh", errs);
   };
+  const timeoutInterrupt = useTimeoutInterrupt();
   const {
     isValid,
     update,
@@ -25,6 +28,7 @@ const CreateUser = () => {
     onSubmit,
     onInvalidSubmit
   );
+
   return (
     <form
       onSubmit={(e) => {
@@ -36,8 +40,12 @@ const CreateUser = () => {
       <div>
         <label htmlFor="username">Username</label>
         <input
+          className={errors["username"] ? "invalid" : ""}
           name="username"
-          onChange={(e) => update("username", e.target.value)}
+          aria-invalid={errors["usename"]}
+          onChange={(e) =>
+            timeoutInterrupt(() => update("username", e.target.value), 500)
+          }
         />
       </div>
       <ValidationMessageContainer

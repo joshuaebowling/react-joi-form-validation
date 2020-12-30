@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-const useTimeoutInterrupt: (todo: () => void, waitFor: number) => void = (
-  todo,
-  waitFor
-) => {
+const useTimeoutInterrupt: () => (
+  todo: () => void,
+  waitFor: number
+) => void = () => {
   const [currentTO, setCurrentTO] = useState<number | null>(null);
-  const timeoutInterrupt = () => {
+  const timeoutInterrupt = (todo, waitFor) => {
     if (currentTO) {
       clearTimeout(currentTO);
     }
@@ -16,5 +16,23 @@ const useTimeoutInterrupt: (todo: () => void, waitFor: number) => void = (
   };
   return timeoutInterrupt;
 };
+
+// export class TimeoutInterrupt {
+//   TO: number | null = null;
+//   todo: () => void | null = null;
+//   waitFor: number | null = null;
+//   timeoutInterrupt = () => {
+//     if (this.TO) clearTimeout(this.TO);
+//     let timeout = setTimeout(() => {
+//       this.todo();
+//     }, this.waitFor);
+//     this.TO = timeout;
+//   };
+//   constructor(todo: () => void, waitFor: number) {
+//     this.todo = todo;
+//     this.waitFor = waitFor;
+//     this.timeoutInterrupt = this.timeoutInterrupt.bind(this);
+//   }
+// }
 
 export default useTimeoutInterrupt;

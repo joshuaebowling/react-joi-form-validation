@@ -2,3 +2,7 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+input.invalid {
+  border: 1px solid red;
+}
