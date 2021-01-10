@@ -25,7 +25,8 @@ The second issue applies more broadly to "form" validation. Having used 2 popula
 
 ### Joi was not designed for Client(DOM) initially
 
-Specifically, it provides a single method, `validate` which will validate the whole schema -- meaning that that there's no good way to just validate a single field/property. To start, I'm going to **ignore** this problem and measure performance after I've built a decently complex form.
+**Please note I'm not a Joi expert**
+Specifically, it provides a single method, `validate` which will validate the whole schema -- meaning that that there's no good way to just validate a single field/property (though one can use the `abortEarly` property to make sure all fields aren't validated each time). To start, I'm going to **ignore** this problem and measure performance after I've built a decently complex form.
 
 ### Not all things that need to be validated are vanilla inputs.
 
