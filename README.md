@@ -8,7 +8,7 @@ For both of the above reasons, I'd really like a means to apply Joi validations 
 
 ## Most Recent Sandbox
 
-I'm having trouble keeping sandboxes synced so I'm going to leave the latest link [here](https://codesandbox.io/s/youthful-allen-lh22k)
+I'm having trouble keeping sandboxes synced so I'm going to leave the latest link [here](https://codesandbox.io/s/react-joi-form-validation-lh22k)
 
 ## Overview
 

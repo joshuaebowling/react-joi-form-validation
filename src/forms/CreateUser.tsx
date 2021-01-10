@@ -46,6 +46,7 @@ const CreateUser = () => {
           onChange={(e) =>
             timeoutInterrupt(() => update("username", e.target.value), 500)
           }
+          autoFocus
         />
       </div>
       <ValidationMessageContainer

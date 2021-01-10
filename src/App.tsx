@@ -5,7 +5,7 @@ import CreateUserForm from "./forms/CreateUser";
 export default function App() {
   return (
     <div className="App">
-      <h1>React Joi Form Validation (WiP)</h1>
+      <h1>React Joi Form Validation (WiP Internationalization)</h1>
       <h2>See Readme for explanation</h2>
       <p>
         <small>

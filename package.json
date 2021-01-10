@@ -1,8 +1,13 @@
 {
   "name": "react-joi-form-validation",
   "version": "1.0.0",
-  "description": "",
-  "keywords": [],
+  "description": "validate form and other random elements with this react/joi combo",
+  "keywords": [
+    "validation",
+    "react",
+    "typescript",
+    "joi"
+  ],
   "main": "src/index.tsx",
   "dependencies": {
     "joi": "17.3.0",
